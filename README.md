@@ -1,1 +1,379 @@
 # Santhosh
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Portfolio</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <style>
+        :root {
+            --primary: #2ecc71;
+            --secondary: #27ae60;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        .nav {
+            position: fixed;
+            width: 100%;
+            padding: 1.5rem;
+            background: rgba(44, 62, 80, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(45deg, var(--dark), #34495e);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        section {
+            padding: 5rem 2rem;
+            min-height: 100vh;
+            scroll-margin-top: 4rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-item {
+            padding: 20px 40px;
+            position: relative;
+            width: 50%;
+            animation: slideIn 1s ease-out;
+        }
+
+        /* Continue with timeline styles, project grid, skill bars, etc. */
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+            /* Add new styles */
+    .skill-bar {
+        background: rgba(255,255,255,0.1);
+        height: 30px;
+        margin: 1rem;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .skill-progress {
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary), #3498db);
+        transition: width 1s ease;
+    }
+
+    .award-card {
+        transition: transform 0.3s;
+    }
+    
+    .award-card:hover {
+        transform: scale(1.1);
+    }
+
+    .cursor {
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--primary);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        transition: transform 0.3s;
+    }
+
+    /* Add more styles for other sections */
+
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <h1>Your Name</h1>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Creative Developer</h1>
+            <p>Turning ideas into digital reality</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <!-- Add about content -->
+    </section>
+
+    <section id="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+            <!-- Add timeline items -->
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="project-grid">
+            <!-- Add project cards -->
+        </div>
+    </section>
+
+     <!-- Custom Cursor -->
+     <div class="cursor"></div>
+     <div class="cursor-follower"></div>
+ 
+     <!-- Particle Background -->
+     <div id="particles-js"></div>
+ 
+     <!-- 3D Element -->
+     <div id="threejs-container"></div>
+ 
+     <!-- Skills Section -->
+     <section id="skills">
+         <h2 class="section-title">Skills</h2>
+         <div class="skill-bar" data-aos="fade-right">
+             <div class="skill-name">HTML/CSS</div>
+             <div class="skill-progress" style="width: 95%"></div>
+         </div>
+         <!-- Add more skills -->
+     </section>
+ 
+     <!-- Awards Section -->
+     <section id="awards">
+         <div class="award-card">
+             <i class="fas fa-trophy"></i>
+             <h3>Best Developer 2023</h3>
+             <p>Code Masters International</p>
+         </div>
+     </section>
+ 
+     <!-- Testimonials Carousel -->
+     <div class="swiper">
+         <div class="swiper-wrapper">
+             <div class="swiper-slide">"Brilliant work!" - Client A</div>
+             <!-- More slides -->
+         </div>
+     </div>
+ 
+     <!-- Contact Form -->
+     <form id="contact" class="contact-form">
+         <input type="text" placeholder="Name" required>
+         <button type="submit">Send Message</button>
+     </form>
+ 
+     <!-- Social Media -->
+     <div class="social-links">
+         <a href="#"><i class="fab fa-github"></i></a>
+         <!-- More icons -->
+     </div>
+ 
+     <!-- Dark Mode Toggle -->
+     <button id="dark-mode-toggle"></button>
+ 
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: false,
+            easing: 'ease-in-out'
+        });
+        // Initialize Particle Background
+    particlesJS('particles-js', {
+        particles: {
+            number: { value: 80 },
+            size: { value: 3 }
+        }
+    });
+
+      // Initialize Swiper
+      new Swiper('.swiper', {
+        loop: true,
+        autoplay: { delay: 3000 }
+    });
+
+    // Initialize Three.js Scene
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(200, 200);
+    document.getElementById('threejs-container').appendChild(renderer.domElement);
+
+    // Add 3D Cube
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+    camera.position.z = 5;
+
+    // Animation loop
+    function animate() {
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Custom Cursor
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+
+    // Dark Mode Toggle
+    const toggle = document.getElementById('dark-mode-toggle');
+    toggle.addEventListener('click', () => {
+        document.body.classList.toggle('light-mode');
+    });
+
+    // Form Submission
+    document.querySelector('.contact-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        // Add form submission logic
+    });
+
+    </script>
+</body>
+</html>
